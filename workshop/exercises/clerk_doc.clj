@@ -108,6 +108,13 @@
 
 (doc* #'list)
 
+(defmacro doc [form]
+  `(doc* (var ~form)))
+
+(doc map)
+
+(doc list)
+
 (clerk/html [:hr])
 
 ;; Not the prettiest thing in the world.
