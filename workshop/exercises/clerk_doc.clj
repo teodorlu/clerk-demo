@@ -115,6 +115,14 @@
 
 (doc list)
 
+(defn doc** [v]
+  (clerk/html [:div
+               [:p [:strong (symbol v)]]
+               [:p (pr-str (:arglists (meta v)))]
+               [:p (:doc (meta v))]]))
+
+(doc** #'map)
+
 (clerk/html [:hr])
 
 ;; Not the prettiest thing in the world.
