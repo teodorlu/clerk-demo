@@ -12,6 +12,7 @@
         dk.ative/docjure {:mvn/version "1.16.0"}
         clojusc/wordnet {:mvn/version "1.2.0"}
         clj-jgit/clj-jgit {:mvn/version "1.0.2" :exclusions [org.slf4j/slf4j-api]}
+        cheshire {:mvn/version "5.11.0"}
 
         ;; some statistical routines
         kixi/stats {:mvn/version "0.5.4"}
