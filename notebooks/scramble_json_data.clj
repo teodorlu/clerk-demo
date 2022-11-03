@@ -1,4 +1,4 @@
-(ns prepare-json-data
+(ns scramble-json-data
   (:require [clojure.walk :refer [prewalk]]
             [cheshire.core :as json]))
 
@@ -9,7 +9,7 @@
 
 
 (def original-path (str "/home/teodorlu/tmp/temp-2022-11-02/cmx" "/" "c16f4f.json"))
-(def scrambled-path "datasets/c16f4f.json")
+(def scrambled-path "datasets/c16f4f.scrambled.json")
 
 (defn load-original []
   (-> original-path
