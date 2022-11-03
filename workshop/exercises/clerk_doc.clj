@@ -108,12 +108,8 @@
 
 (doc* #'list)
 
-(defmacro doc [form]
-  `(doc* (var ~form)))
 
-(doc map)
-
-(doc list)
+;; My simple doc:
 
 (defn doc** [v]
   (clerk/html [:div
@@ -122,6 +118,41 @@
                [:p (:doc (meta v))]]))
 
 (doc** #'map)
+
+
+(defn doc***
+  "Adapted from https://github.com/nextjournal/clerk/blob/e617f081792c32dccd51d1cebb294d08fefa2132/notebooks/doc.clj#L41-L53"
+  [v]
+  (let [{:keys [ns doc name arglists]} (meta v)]
+    (clerk/html
+     [:div
+      [:br]
+      [:strong (str ns "/" name)]
+      (when (seq arglists)
+        [:div.pt-4
+         (clerk/code (str/join "\n" (map (fn [args] (pr-str (concat [name] args)))
+                                         arglists)))])
+      (when doc
+        [:div.mt-4.viewer-markdown.prose
+         (clerk/md doc)])])))
+
+(keys (meta #'map))
+
+(-> #'map
+    meta
+    :ns
+    str)
+
+(:ns (meta #'map))
+
+(doc*** #'map)
+
+(defmacro doc [form]
+  `(doc*** (var ~form)))
+
+(doc map)
+
+(doc list)
 
 (clerk/html [:hr])
 
